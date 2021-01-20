@@ -1,25 +1,25 @@
 package br.com.ignidigital.dscatalog.resources;
 
 import br.com.ignidigital.dscatalog.entities.Category;
+import br.com.ignidigital.dscatalog.services.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categories")
-public class CategoryResources implements Serializable {
+public class CategoryResource {
+
+    @Autowired
+    private CategoryService service;
 
     @GetMapping
     public ResponseEntity <List<Category>> findAll(){
-        List<Category> list = new ArrayList<>();
-        list.add(new Category(1L,"Books"));
-        list.add(new Category(2L,"Electronics"));
-
+        List<Category> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
