@@ -1,5 +1,6 @@
 package br.com.ignidigital.dscatalog.resources;
 
+import br.com.ignidigital.dscatalog.dto.CategoryDTO;
 import br.com.ignidigital.dscatalog.entities.Category;
 import br.com.ignidigital.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class CategoryResource {
     private CategoryService service;
 
     @GetMapping
-    public ResponseEntity <List<Category>> findAll(){
-        List<Category> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity <List<CategoryDTO>> findAll(){
+        List<CategoryDTO> listDto = service.findAll();
+        return ResponseEntity.ok().body(listDto);
     }
 
 }
