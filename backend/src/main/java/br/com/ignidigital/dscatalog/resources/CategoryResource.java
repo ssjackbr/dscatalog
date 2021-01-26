@@ -1,7 +1,6 @@
 package br.com.ignidigital.dscatalog.resources;
 
 import br.com.ignidigital.dscatalog.dto.CategoryDTO;
-import br.com.ignidigital.dscatalog.entities.Category;
 import br.com.ignidigital.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +36,12 @@ public class CategoryResource implements Serializable {
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto) {
+        dto = service.update(id,dto);
+        return ResponseEntity.ok().body(dto);
     }
 
 }

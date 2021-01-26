@@ -1,6 +1,6 @@
 package br.com.ignidigital.dscatalog.resources.exceptions;
 
-import br.com.ignidigital.dscatalog.services.exceptions.EntityNotFoundException;
+import br.com.ignidigital.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,8 +12,8 @@ import java.time.Instant;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<StandardError> entityNotFound (EntityNotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<StandardError> entityNotFound (ResourceNotFoundException e, HttpServletRequest request){
 
         HttpStatus httpStatus = HttpStatus.NOT_FOUND;
 
@@ -26,4 +26,6 @@ public class ResourceExceptionHandler {
 
         return ResponseEntity.status(httpStatus).body(err);
     }
+
+
 }
