@@ -8,6 +8,8 @@ import br.com.ignidigital.dscatalog.services.exceptions.ResourceNotFoundExceptio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,19 +28,9 @@ public class CategoryService implements Serializable {
     private CategoryRepository repository;
     
     @Transactional(readOnly = true)
-    public List<CategoryDTO> findAll (){
-        List<Category> list = repository.findAll();
-
-        /*
-            Possibilidade de melhoria de código utilizando expressão lambda para redução do código abaixo que contem a estrutura for;
-            List<CategoryDTO> listDto = list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
-         */
-
-        List<CategoryDTO> listDto = new ArrayList<>();
-        for (Category cat : list) {
-            listDto.add(new CategoryDTO(cat));
-        }
-        return listDto;
+    public Page<CategoryDTO> findAllPaged (PageRequest pageRequest){
+        Page<Category> list = repository.findAll(pageRequest);
+        return list.map(x -> new CategoryDTO(x));
     }
 
     @Transactional(readOnly = true)
