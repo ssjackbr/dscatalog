@@ -3,8 +3,12 @@ package br.com.ignidigital.dscatalog.services;
 import br.com.ignidigital.dscatalog.dto.CategoryDTO;
 import br.com.ignidigital.dscatalog.entities.Category;
 import br.com.ignidigital.dscatalog.repositories.CategoryRepository;
+import br.com.ignidigital.dscatalog.services.exceptions.DatabaseException;
 import br.com.ignidigital.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,6 +65,18 @@ public class CategoryService implements Serializable {
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Id not found "+id);
+        }
+    }
+
+    public void delete(Long id) {
+        try{
+            repository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Id not found "+id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException ("Integrity violation!");
         }
     }
 }
