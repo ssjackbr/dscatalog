@@ -14,13 +14,16 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<StandardError> entityNotFound (EntityNotFoundException e, HttpServletRequest request){
+
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+
         StandardError err = new StandardError ();
         err.setTimestamp(Instant.now());
-        err.setStatus(HttpStatus.NOT_FOUND.value());
+        err.setStatus(httpStatus.value());
         err.setError("Resource not found!");
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+        return ResponseEntity.status(httpStatus).body(err);
     }
 }
