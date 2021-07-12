@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.net.URI;
 
@@ -44,14 +45,14 @@ public class UserResource implements Serializable {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert (@RequestBody UserInsertDTO dto) {
+    public ResponseEntity<UserDTO> insert (@Valid @RequestBody UserInsertDTO dto) {
         UserDTO newDto = product.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newDto.getId()).toUri();
         return ResponseEntity.created(uri).body(newDto);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO dto) {
+    public ResponseEntity<UserDTO> update(@Valid @PathVariable Long id, @RequestBody UserDTO dto) {
         dto = product.update(id,dto);
         return ResponseEntity.ok().body(dto);
     }

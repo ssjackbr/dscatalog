@@ -3,6 +3,10 @@ package br.com.ignidigital.dscatalog.dto;
 import br.com.ignidigital.dscatalog.entities.Category;
 import br.com.ignidigital.dscatalog.entities.Product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -14,10 +18,18 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @Size (min = 3, max = 12, message = "O nome deve conter entre 3 e 12 caracteres!")
+    @NotBlank (message = "Campo obrigatório!")
     private String name;
+
+    @NotBlank (message = "Campo obrigatório!")
     private String description;
+
+    @Positive(message = "O preço do produto deve ser maior ou igual a zero  R$ 0,00")
     private Double price;
     private String imgUrl;
+
+    @PastOrPresent(message = "A data do produto não pode ser futura!")
     private Instant date;
 
     private List<CategoryDTO> categories = new ArrayList<>();

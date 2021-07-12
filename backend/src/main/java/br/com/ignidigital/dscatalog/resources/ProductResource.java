@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.net.URI;
 
@@ -43,14 +44,14 @@ public class ProductResource implements Serializable {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> insert (@RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> insert (@Valid @RequestBody ProductDTO dto) {
         dto = product.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> update(@Valid @PathVariable Long id, @RequestBody ProductDTO dto) {
         dto = product.update(id,dto);
         return ResponseEntity.ok().body(dto);
     }
