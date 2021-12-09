@@ -1,4 +1,4 @@
-package br.com.ignidigital.dscatalog.resources.exceptions;
+package br.com.ignidigital.dscatalog.controller.exceptions;
 
 import br.com.ignidigital.dscatalog.services.exceptions.DatabaseException;
 import br.com.ignidigital.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> entityNotFound (ResourceNotFoundException e, HttpServletRequest request){

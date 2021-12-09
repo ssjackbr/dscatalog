@@ -1,12 +1,11 @@
-package br.com.ignidigital.dscatalog.resources;
+package br.com.ignidigital.dscatalog.controller;
 
 import br.com.ignidigital.dscatalog.dto.UserDTO;
 import br.com.ignidigital.dscatalog.dto.UserInsertDTO;
 import br.com.ignidigital.dscatalog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,24 +16,15 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource implements Serializable {
+public class UserController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Autowired
     private UserService product;
 
     @GetMapping
-    public ResponseEntity <Page<UserDTO>> findAll(
-
-        @RequestParam(value = "page", defaultValue = "0") Integer page,
-        @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-        @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-        @RequestParam(value = "orderBy", defaultValue = "firstName") String orderBy
-    )
-    {
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-
-        Page<UserDTO> list = product.findAllPaged(pageRequest);
+    public ResponseEntity <Page<UserDTO>> findAll(Pageable pageable) {
+        Page<UserDTO> list = product.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     }
 

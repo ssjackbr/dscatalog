@@ -1,4 +1,4 @@
-package br.com.ignidigital.dscatalog.resources.exceptions;
+package br.com.ignidigital.dscatalog.controller.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
