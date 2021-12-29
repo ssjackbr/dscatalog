@@ -1,6 +1,6 @@
 package br.com.ignidigital.dscatalog.repositories;
 
-import br.com.ignidigital.dscatalog.entities.Product;
+import br.com.ignidigital.dscatalog.domain.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package br.com.ignidigital.dscatalog.dto;
+package br.com.ignidigital.dscatalog.domain.dto;
 
-import br.com.ignidigital.dscatalog.entities.Category;
-import br.com.ignidigital.dscatalog.entities.Product;
+import br.com.ignidigital.dscatalog.domain.entities.Category;
+import br.com.ignidigital.dscatalog.domain.entities.Product;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
@@ -37,9 +37,9 @@ public class ProductDTO implements Serializable {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Instant date) {
+    public ProductDTO(Long id, String nome, String description, Double price, String imgUrl, Instant date) {
         this.id = id;
-        this.name = name;
+        this.name = nome;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;

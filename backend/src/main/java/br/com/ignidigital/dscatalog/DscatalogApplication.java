@@ -1,6 +1,6 @@
 package br.com.ignidigital.dscatalog;
 
-import br.com.ignidigital.dscatalog.entities.Category;
+import br.com.ignidigital.dscatalog.domain.entities.Category;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -1,7 +1,7 @@
 package br.com.ignidigital.dscatalog.controller;
 
 import org.springframework.data.domain.Pageable;
-import br.com.ignidigital.dscatalog.dto.ProductDTO;
+import br.com.ignidigital.dscatalog.domain.dto.ProductDTO;
 import br.com.ignidigital.dscatalog.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

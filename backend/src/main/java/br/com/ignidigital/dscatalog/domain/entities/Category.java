@@ -1,4 +1,4 @@
-package br.com.ignidigital.dscatalog.entities;
+package br.com.ignidigital.dscatalog.domain.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

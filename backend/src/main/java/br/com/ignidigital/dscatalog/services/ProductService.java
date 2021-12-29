@@ -1,9 +1,9 @@
 package br.com.ignidigital.dscatalog.services;
 
-import br.com.ignidigital.dscatalog.dto.CategoryDTO;
-import br.com.ignidigital.dscatalog.dto.ProductDTO;
-import br.com.ignidigital.dscatalog.entities.Category;
-import br.com.ignidigital.dscatalog.entities.Product;
+import br.com.ignidigital.dscatalog.domain.dto.CategoryDTO;
+import br.com.ignidigital.dscatalog.domain.dto.ProductDTO;
+import br.com.ignidigital.dscatalog.domain.entities.Category;
+import br.com.ignidigital.dscatalog.domain.entities.Product;
 import br.com.ignidigital.dscatalog.repositories.CategoryRepository;
 import br.com.ignidigital.dscatalog.repositories.ProductRepository;
 import br.com.ignidigital.dscatalog.services.exceptions.DatabaseException;
@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

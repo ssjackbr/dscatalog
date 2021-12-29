@@ -1,7 +1,7 @@
 package br.com.ignidigital.dscatalog.controller;
 
-import br.com.ignidigital.dscatalog.dto.UserDTO;
-import br.com.ignidigital.dscatalog.dto.UserInsertDTO;
+import br.com.ignidigital.dscatalog.domain.dto.UserDTO;
+import br.com.ignidigital.dscatalog.domain.dto.UserInsertDTO;
 import br.com.ignidigital.dscatalog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

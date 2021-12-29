@@ -1,6 +1,6 @@
 package br.com.ignidigital.dscatalog.repositories;
 
-import br.com.ignidigital.dscatalog.entities.User;
+import br.com.ignidigital.dscatalog.domain.entities.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,8 @@
 package br.com.ignidigital.dscatalog.services;
 
-import br.com.ignidigital.dscatalog.dto.CategoryDTO;
-import br.com.ignidigital.dscatalog.entities.Category;
+import br.com.ignidigital.dscatalog.domain.dto.CategoryDTO;
+import br.com.ignidigital.dscatalog.domain.entities.Category;
+import br.com.ignidigital.dscatalog.domain.enums.CategoryNameEnum;
 import br.com.ignidigital.dscatalog.repositories.CategoryRepository;
 import br.com.ignidigital.dscatalog.services.exceptions.DatabaseException;
 import br.com.ignidigital.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +21,8 @@ import java.util.Optional;
 @Service
 public class CategoryService implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    private CategoryNameEnum categoryNameEnum;
 
     @Autowired
     private CategoryRepository repository;

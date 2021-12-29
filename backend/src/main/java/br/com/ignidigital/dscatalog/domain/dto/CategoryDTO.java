@@ -1,6 +1,6 @@
-package br.com.ignidigital.dscatalog.dto;
+package br.com.ignidigital.dscatalog.domain.dto;
 
-import br.com.ignidigital.dscatalog.entities.Category;
+import br.com.ignidigital.dscatalog.domain.entities.Category;
 
 import java.io.Serializable;
 import java.util.Objects;

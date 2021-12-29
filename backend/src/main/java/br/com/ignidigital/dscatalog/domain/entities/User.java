@@ -1,45 +1,42 @@
-package br.com.ignidigital.dscatalog.dto;
+package br.com.ignidigital.dscatalog.domain.entities;
 
-import br.com.ignidigital.dscatalog.entities.User;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class UserDTO implements Serializable {
+@Entity
+@Table (name = "tb_user")
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "Campo obrigatório!")
     private String firstName;
     private String lastName;
 
-    @Email (message = "Insira um e-mail válido!")
+    @Column (unique = true)
     private String email;
+    private String password;
 
-    Set<RoleDTO> roles = new HashSet<>();
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public UserDTO() {
+    public User() {
+
     }
 
-    public UserDTO(Long id, String firstName, String lastName, String email, String password) {
+    public User(Long id, String firstName, String lastName, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    public UserDTO(User user) {
-        id        = user.getId();
-        firstName = user.getFirstName();
-        lastName  = user.getLastName();
-        email     = user.getEmail();
-        user.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+        this.password = password;
     }
 
     public Long getId() {
@@ -74,7 +71,15 @@ public class UserDTO implements Serializable {
         this.email = email;
     }
 
-    public Set<RoleDTO> getRoles() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -82,8 +87,8 @@ public class UserDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDTO userDTO = (UserDTO) o;
-        return id.equals(userDTO.id);
+        User user = (User) o;
+        return id.equals(user.id);
     }
 
     @Override
@@ -91,4 +96,3 @@ public class UserDTO implements Serializable {
         return Objects.hash(id);
     }
 }
-

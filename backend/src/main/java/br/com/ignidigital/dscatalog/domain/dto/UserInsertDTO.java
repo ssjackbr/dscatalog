@@ -1,6 +1,4 @@
-package br.com.ignidigital.dscatalog.dto;
-
-import net.bytebuddy.implementation.bind.annotation.Super;
+package br.com.ignidigital.dscatalog.domain.dto;
 
 public class UserInsertDTO extends UserDTO {
     private static final long serialVersionUID = 1L;

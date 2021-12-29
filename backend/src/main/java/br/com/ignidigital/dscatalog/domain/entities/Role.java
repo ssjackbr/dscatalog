@@ -1,29 +1,26 @@
-package br.com.ignidigital.dscatalog.dto;
+package br.com.ignidigital.dscatalog.domain.entities;
 
-import br.com.ignidigital.dscatalog.entities.Role;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class RoleDTO implements Serializable {
+@Entity
+@Table(name = "tb_role ")
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authority;
 
-    public RoleDTO() {
+    public Role() {
     }
 
-    public RoleDTO(Long id, String authority) {
+    public Role(Long id, String authority) {
         this.id = id;
         this.authority = authority;
     }
-
-    public RoleDTO(Role role) {
-        id = role.getId();
-        authority = role.getAuthority();
-    }
-
 
     public Long getId() {
         return id;
@@ -45,8 +42,8 @@ public class RoleDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RoleDTO roleDTO = (RoleDTO) o;
-        return id.equals(roleDTO.id);
+        Role role = (Role) o;
+        return id.equals(role.id);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package br.com.ignidigital.dscatalog.controller;
 
-import br.com.ignidigital.dscatalog.dto.CategoryDTO;
+import br.com.ignidigital.dscatalog.domain.dto.CategoryDTO;
 import br.com.ignidigital.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
